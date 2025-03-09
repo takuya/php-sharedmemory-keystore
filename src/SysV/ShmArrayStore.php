@@ -20,7 +20,7 @@ class ShmArrayStore implements \ArrayAccess, \Countable, \IteratorAggregate {
                                public string $mode = 'c' ) {
     $this->shm = new ShmOperator($this->name, $this->size, $this->perm, $this->mode);
     $this->sem = new IPCSemaphore($this->name.'_sem', $this->perm);
-    $this->setFilter();;
+    $this->setFilter();
   }
   
   public function setFilter( string $filter_names = 'serialize' ):void {

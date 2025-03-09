@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace Takuya\ValueFilter;
 
@@ -21,14 +21,13 @@ class ValueFilterSupport {
     $this->addFilters($filter_names);
   }
   
-  protected function addFilters( $filter_names ) {
+  protected function addFilters( $filter_names ):void {
     if( empty($filter_names) ) {
       return;
     }
-    $filter_names = preg_split('/\|/', $filter_names);
-    foreach ($filter_names as $name) {
-      $name = preg_split('/,/', $name);
-      [$name, $args] = [$name[0], array_slice($name, 1)??[]];
+    foreach (preg_split('/\|/', $filter_names) as $filter_name) {
+      $ret = preg_split('/,/', $filter_name);
+      [$name, $args] = [$ret[0], array_slice($ret, 1)??[]];
       $this->{'enable'.ucfirst($name)}(...$args);
     }
   }
