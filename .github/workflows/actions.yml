@@ -36,14 +36,14 @@ jobs:
         shell: bash
         run: |
           php -v
-          composer require takuya/php-sysv-ipc-shared-memory
+          composer require takuya/php-sharedmemory-keystore
           cat <<'EOS' > sample.php
           <?php
           require_once 'vendor/autoload.php';
-          use Takuya\SysV\IPCSharedMem;
+          use Takuya\SysV\ShmArrayStore;
           $uniq_name = 'shm_name';
-          $shm = new IPCSharedMem($uniq_name);
-          $shm->put('message');
+          $shm = new ShmArrayStore($uniq_name);
+          $shm['key]='message';
           $shm->get();
           $ret = $shm->destroy();
           var_dump( $ret == 'message');
