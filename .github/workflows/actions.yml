@@ -43,7 +43,7 @@ jobs:
           use Takuya\SysV\ShmArrayStore;
           $uniq_name = 'shm_name';
           $shm = new ShmArrayStore($uniq_name);
-          $shm['key]='message';
+          $shm['key']='message';
           $shm->get();
           $ret = $shm->destroy();
           var_dump( $ret == 'message');
