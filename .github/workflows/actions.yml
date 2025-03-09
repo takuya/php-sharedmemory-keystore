@@ -44,7 +44,7 @@ jobs:
           $uniq_name = 'shm_name';
           $shm = new ShmArrayStore($uniq_name);
           $shm['key']='message';
-          $shm->get();
+          $shm->get('key');
           $ret = $shm->destroy();
           var_dump( $ret == 'message');
           EOS
