@@ -65,9 +65,9 @@ To make use of encryption or json_encode into SharedMemory, shmop_write is bette
 
 I wrote these php code.
 
-- [SysV IPC SharedMemory Wrapper](https://github.com/takuya/php-sysv-ipc-shm-cache)
-- [SysV IPC Semaphore Wrapper ](https://github.com/takuya/php-sysv-ipc-semaphore)
-- [SysV IPC Message Queue](https://github.com/takuya/php-sysv-ipc-message-queue)
+- [PHP SysV IPC SharedMemory Wrapper](https://github.com/takuya/php-sysv-ipc-shm-cache)
+- [PHP SysV IPC Semaphore Wrapper ](https://github.com/takuya/php-sysv-ipc-semaphore)
+- [PHP SysV IPC Message Queue](https://github.com/takuya/php-sysv-ipc-message-queue)
 - [PHP SharedMemory Operation](https://github.com/takuya/php-sharedmemory-keystore) This package.
 
 
