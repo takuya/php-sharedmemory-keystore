@@ -2,7 +2,6 @@
   "name": "takuya/php-sharedmemory-keystore",
   "description": "php shmop_xx wrapper",
   "type": "library",
-  "version": "0.1",
   "license": "GPL-3.0-or-later",
   "keywords": [
     "php",
@@ -33,7 +32,7 @@
   ],
   "require": {
     "php": ">=8.1",
-    "takuya/php-sysv-ipc-semaphore": "^0.2.0",
+    "takuya/php-sysv-ipc-semaphore": "^0.3",
     "ext-shmop": "*"
   },
   "require-dev": {
