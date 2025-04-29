@@ -18,8 +18,9 @@ class ShmArrayStore implements \ArrayAccess, \Countable, \IteratorAggregate {
                                public int    $size = 1024*10,
                                public int    $perm = 0770,
                                public string $mode = 'c' ) {
-    $this->shm = new ShmOperator($this->name, $this->size, $this->perm, $this->mode);
-    $this->sem = new IPCSemaphore($this->name.'_sem', $this->perm);
+    ['shmem-key'=>$shm_key,'semaphore-key'=>$sem_key] = $this->ipc_key();
+    $this->shm = new ShmOperator($shm_key, $this->size, $this->perm, $this->mode);
+    $this->sem = new IPCSemaphore(name: $sem_key, perm: $this->perm);
     $this->setFilter();
   }
   
@@ -57,14 +58,12 @@ class ShmArrayStore implements \ArrayAccess, \Countable, \IteratorAggregate {
    * @param callable(\Takuya\SysV\ShmArrayStore $this):mixed $fn
    * @return mixed
    */
-  public function run( callable $fn ):mixed {
+  public function runWithLock( callable $fn ):mixed {
     return $this->withLock($fn);
   }
   
   public function destroy():bool {
-    return $this->sem->acquire()
-           && $this->shm->destroy()
-           && $this->sem->destroy();
+    return $this->withLock(fn() => $this->shm->destroy()) && $this->sem->destroy();
   }
   
   public function size():int {

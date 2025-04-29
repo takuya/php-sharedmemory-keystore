@@ -29,7 +29,7 @@ class SharedMemoryAccessTest extends TestCase {
   public function test_shm_key_transaction() {
     $arr = array_map(fn() => str_rand(10), array_fill(0, 5, null));
     $store = new ShmArrayStore(str_rand(), 500);
-    $ret = $store->run(function( $kvs )use($arr){
+    $ret = $store->runWithLock(function( $kvs )use($arr){
       $ret[]=$kvs->store($arr);
       $ret[]=$kvs->all();
       $ret[]=$kvs->clear();
