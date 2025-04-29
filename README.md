@@ -24,7 +24,15 @@ $obj = $shm->get('key');// instance of MyClass;
 // remove ipc
 $shm->destroy()
 ```
-
+## Safer access by sem
+```php
+<?php
+$store = new ShmArrayStore('my-shm', 1024);
+$store->runWithLock(function($store)use($idx){
+  $store->set(0,($store->get(0) ?? 0)+$idx);
+});
+}
+```
 ## More easy usage : Array Access.
 
 This package offers KVS style access to Shared Memory.
